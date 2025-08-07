@@ -1,4 +1,4 @@
-@LSC.MentorByKarthik.API_HostAddress = http://localhost:5080
+@LSC.MentorByKarthik.API_HostAddress = http://localhost:5028
 
 GET {{LSC.MentorByKarthik.API_HostAddress}}/weatherforecast/
 Accept: application/json

@@ -27,13 +27,13 @@ jobs:
         run: dotnet build ./LSC.MentorByKarthik.API/LSC.MentorByKarthik.API.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./LSC.MentorByKarthik.API/LSC.MentorByKarthik.API.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish ./LSC.MentorByKarthik.API/LSC.MentorByKarthik.API.csproj -c Release -o ./myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ./myapp
 
   deploy:
     runs-on: windows-latest
@@ -47,6 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: .net-app
+          path: ./myapp  # ✅ This ensures path consistency
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -61,7 +62,8 @@ jobs:
         with:
           app-name: 'mentorbykarthik-api-dev'
           slot-name: 'Production'
-          package: ${{ github.workspace }}/myapp
+          package: ./myapp  # ✅ This now matches the actual path
 
           
+
 

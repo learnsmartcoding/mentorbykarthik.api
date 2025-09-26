@@ -23,7 +23,7 @@ jobs:
         with:
           dotnet-version: '9.x'
 
-       - name: Build with dotnet
+      - name: Build with dotnet
         run: dotnet build ./LSC.MentorByKarthik.API/LSC.MentorByKarthik.API.csproj --configuration Release
 
       - name: dotnet publish
@@ -64,3 +64,4 @@ jobs:
           package: .
 
           
+
